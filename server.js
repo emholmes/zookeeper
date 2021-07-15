@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -7,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const { animals } = require("./data/animals.json");
+const { stringify } = require("querystring");
 
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
@@ -59,6 +63,19 @@ function findById(id, animalsArray) {
   return result;
 }
 
+function createNewAnimal(body, animalsArray) {
+  console.log(body);
+  // our fns main code will go here
+  const animal = body;
+  animalsArray.push(animal);
+  fs.writeFileSync(
+    path.join(__dirname, "./data/animals.json"),
+    JSON.stringify({ animals: animalsArray }, null, 2)
+  );
+  // return finished code to post route for response
+  return body;
+}
+
 app.get("/api/animals/:id", (req, res) => {
   const result = findById(req.params.id, animals);
   if (result) {
@@ -71,6 +88,11 @@ app.get("/api/animals/:id", (req, res) => {
 app.post("/api/animals", (req, res) => {
   // req.body is where our incoming content will be
   console.log(req.body);
+  // set id based on the next index of the array
+  req.body.id = animals.length.toString();
+  // add animal to json file and animals array
+  const animal = createNewAnimal(req.body, animals);
+
   res.json(req.body);
 });
 
