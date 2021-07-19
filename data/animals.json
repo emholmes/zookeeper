@@ -126,6 +126,16 @@
         "loving"
       ],
       "id": "12"
+    },
+    {
+      "name": "Nanna",
+      "species": "Monkey",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "hungry",
+        "zany"
+      ],
+      "id": "13"
     }
   ]
 }
