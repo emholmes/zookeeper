@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { filterByQuery, findById, createNewAnimal, validateAnimal, validateZookeeper, createNewZookeeper } = require("../../lib/zookeepers");
+const { filterByQuery, findById, createNewZookeeper, validateZookeeper } = require("../../lib/zookeepers");
 const { zookeepers } = require("../../data/zookeepers.json");
 
 router.get("/zookeepers", (req, res) => {

@@ -59,6 +59,12 @@
       "age": 64,
       "favoriteAnimal": "Rabbit",
       "id": "9"
+    },
+    {
+      "name": "Erin",
+      "age": 30,
+      "favoriteAnimal": "Dogs",
+      "id": "10"
     }
   ]
 }
